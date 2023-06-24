@@ -1,0 +1,51 @@
+<div class="container mt-4">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Calculadora distancia entre dos puntos</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="mt-4">
+      <div class="row">
+
+        <h4>Punto A</h4>
+        <div class="col-md-6 px-1">
+          <mat-form-field appearance="fill">
+            <mat-label>Valor X1</mat-label>
+            <input matInput [(ngModel)]="puntoA.x" type="number">
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="mx-4">
+            <mat-label>Valor Y1</mat-label>
+            <input matInput [(ngModel)]="puntoA.y" type="number">
+          </mat-form-field>
+
+        </div>
+       
+      </div>
+
+      <div class="row mt-4">
+        
+        <h4>Punto B</h4>
+        <div class="col-md-6 px-1">
+          <mat-form-field appearance="fill">
+            <mat-label>Valor X2</mat-label>
+            <input matInput [(ngModel)]="puntoB.x" type="number">
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="mx-4">
+            <mat-label>Valor Y2</mat-label>
+            <input matInput [(ngModel)]="puntoB.y" type="number">
+          </mat-form-field>
+
+        </div>
+       
+      </div>
+
+      <div class="example-button-row">
+        <button mat-raised-button color="primary" (click)="calcularDistancia()">Calcular</button>
+
+        <h4 *ngIf="distancia !== null && distancia !== undefined">La distancia entre los puntos es: {{distancia}}</h4>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+</div>
