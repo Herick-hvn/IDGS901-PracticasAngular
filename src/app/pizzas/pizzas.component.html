@@ -1,0 +1,135 @@
+<div class="container mt-4">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Pizzas H</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="mt-4">
+            <form (ngSubmit)="onSubmit()" [formGroup]="pizzaForm">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Datos del cliente</h4>
+                        <div class="form-group">
+                            <mat-form-field>
+                                <mat-label>Nombre</mat-label>
+                                <input matInput type="text" formControlName="nombre">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="form-group">
+                            <mat-form-field>
+                                <mat-label>Dirección</mat-label>
+                                <input matInput type="text" formControlName="direccion">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="form-group">
+                            <mat-form-field>
+                                <mat-label>Teléfono</mat-label>
+                                <input matInput type="text" formControlName="telefono">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="form-group">
+                            <mat-form-field>
+                                <mat-label>Fecha</mat-label>
+                                <input matInput type="date" formControlName="fecha">
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <h4>Datos de la pizza</h4>
+                        <div class="form-group">
+                            <mat-form-field>
+                                <mat-label>Tamaño</mat-label>
+                                <mat-select formControlName="tamano">
+                                    <mat-option value="Chica">Chica $40</mat-option>
+                                    <mat-option value="Mediana">Mediana $80</mat-option>
+                                    <mat-option value="Grande">Grande $120</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <h5>Ingredientes</h5>
+                        <div class="form-group">
+                            <mat-checkbox formControlName="jamon">Jamón $10</mat-checkbox>
+                            <mat-checkbox formControlName="pina">Piña $10</mat-checkbox>
+                            <mat-checkbox formControlName="champinones">Champiñones $10</mat-checkbox>
+                        </div>
+
+                        <div class="form-group">
+                            <mat-form-field class="mt-3">
+                                <mat-label>Número de pizzas</mat-label>
+                                <input matInput type="number" formControlName="cantidad">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="form-group">
+                            <button mat-raised-button color="primary" type="submit">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <h4>Resumen de la orden</h4>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Tamaño</th>
+                                    <th>Ingredientes</th>
+                                    <th>Número de pizzas</th>
+                                    <th>Subtotal</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let pizza of pizzaDetalles">
+                                    <td>{{ pizza.tamano }}</td>
+                                    <td>{{ pizza.ingredientes.join(', ') }}</td>
+                                    <td>{{ pizza.cantidad }}</td>
+                                    <td>{{ pizza.subtotal }}</td>
+                                    <td>
+                                        <button mat-raised-button color="warn"
+                                            (click)="eliminarPizza(pizza)">Quitar</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6 mt-5">
+                        <div *ngIf="mostrarConfirmacion">
+                            <h4>Confirmación de pedido</h4>
+                            <ng-container *ngFor="let pizza of pizzaDetalles; let isFirst = first">
+                                <p *ngIf="isFirst">Cliente: {{pizza.nombre}}</p>
+                              </ng-container>
+                              <ng-container *ngFor="let pizza of pizzaDetalles; let isFirst = first">
+                                <p *ngIf="isFirst">Domicilio: {{pizza.direccion}}</p>
+                              </ng-container>
+                              <ng-container *ngFor="let pizza of pizzaDetalles; let isFirst = first">
+                                <p *ngIf="isFirst">Telefono: {{pizza.telefono}}</p>
+                              </ng-container>
+                              <ng-container *ngFor="let pizza of pizzaDetalles; let isFirst = first">
+                                <p *ngIf="isFirst">Fecha: {{pizza.fecha}}</p>
+                              </ng-container>
+                            <p>El costo total del pedido es: $ {{ calcularTotal() }}</p>
+                            <p>¿Estás de acuerdo con el pedido?</p>
+                            <button mat-raised-button color="primary" (click)="confirmarPedido()">Sí, confirmar</button>
+                            <button mat-raised-button color="warn" (click)="editarPedido()" class="mx-2">No, cancelar</button>
+                        </div>
+                    </div>
+                </div>
+
+               
+            </form>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <button mat-raised-button color="primary" class="mx-2"
+                        (click)="finalizarCompra()">Terminar</button>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

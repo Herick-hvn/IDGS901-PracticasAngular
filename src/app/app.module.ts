@@ -7,6 +7,8 @@ import { MenuComponent } from './menu/menu.component';
 import { Distancia2puntosModule } from './distancia2puntos/distancia2puntos.module';
 import { ResistenciasComponent } from './resistencias/resistencias.component';
 import { FormsModule } from '@angular/forms';
+import { PizzasModule } from './pizzas/pizzas.module';
+import { PruebasComponent } from './pruebas/pruebas.component';
 
 
 
@@ -16,12 +18,16 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     MenuComponent,
     ResistenciasComponent,
+    PruebasComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     Distancia2puntosModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    PizzasModule,
+    AppRoutingModule
 
   ],
   providers: [],
