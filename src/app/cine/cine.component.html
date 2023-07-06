@@ -1,0 +1,64 @@
+<div class="container mt-4">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Cine</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content class="mt-4">
+      <form [formGroup]="clienteForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <h4>Datos del cliente</h4>
+          <div class="col-md">
+            <mat-form-field appearance="fill">
+              <mat-label>Nombre</mat-label>
+              <input matInput formControlName="name" type="text" />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <h4>Datos de la compra</h4>
+          <div class="col-md-6 px-1">
+             <mat-form-field appearance="fill">
+              <mat-label>Número de compradores</mat-label>
+              <input matInput formControlName="numeroPersonas" type="number" />
+            </mat-form-field> 
+
+            <mat-form-field appearance="fill" class="mx-2">
+              <mat-label>Número de boletos</mat-label>
+              <input matInput formControlName="boletos" type="number" />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <h4>¿Tiene membresía?</h4>
+          <mat-radio-group formControlName="membresia">
+            <mat-radio-button [value]="true">Sí</mat-radio-button>
+            <mat-radio-button [value]="false">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div class="example-button-row mt-4">
+          <button mat-raised-button color="primary" type="submit">Calcular</button>
+        </div>
+      </form>
+
+      <div *ngIf="error !== ''; else resultadosTemplate">
+        <h4>{{ error }}</h4>
+      </div>
+
+      <ng-template #resultadosTemplate>
+        <div *ngIf="totalPagar > 0">
+          <h4>Resultados:</h4>
+          <p>Maximo de boletos {{maximoBoletos}}</p>
+          <p>Nombre: {{ clienteForm.value.name }}</p>
+          <p>Cantidad de boletos: {{ clienteForm.value.boletos }}</p>
+          <p>Precio unitario de boleto: {{ precioBoletos }}</p>
+          <p>Descuento: {{ descuentoMostrar }}%</p>
+          <p>Total a pagar: {{ totalPagar }}</p>
+        </div>
+      </ng-template>
+    </mat-card-content>
+  </mat-card>
+</div>

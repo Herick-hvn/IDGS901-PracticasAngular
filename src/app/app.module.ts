@@ -9,6 +9,7 @@ import { ResistenciasComponent } from './resistencias/resistencias.component';
 import { FormsModule } from '@angular/forms';
 import { PizzasModule } from './pizzas/pizzas.module';
 import { PruebasComponent } from './pruebas/pruebas.component';
+import { CineModule } from './cine/cine.module';
 
 
 
@@ -27,7 +28,8 @@ import { PruebasComponent } from './pruebas/pruebas.component';
     FormsModule,
     BrowserAnimationsModule,
     PizzasModule,
-    AppRoutingModule
+    AppRoutingModule, 
+    CineModule
 
   ],
   providers: [],
